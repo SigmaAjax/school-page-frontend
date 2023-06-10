@@ -18,11 +18,16 @@ export default function AdminNews() {
 	const [searchPhrase, setSearchPhrase] = useState('');
 	// Sorting state
 
+	const url =
+		process.env.NODE_ENV === 'production'
+			? `${process.env.REACT_APP_BACKEND_URL}/api/get`
+			: '/api/get';
+
 	const filterredPosts = postList.filter((post) => {
 		return post.title.toLowerCase().includes(searchPhrase);
 	});
 
-	//console.table(process.env);
+	console.log(url);
 
 	useEffect(() => {
 		setButtonName(() => {
@@ -32,7 +37,7 @@ export default function AdminNews() {
 		const controller = new AbortController();
 
 		async function fetchData() {
-			const response = await axios.get('/api/get', {signal: controller.signal});
+			const response = await axios.get(url, {signal: controller.signal});
 			setPost(() => {
 				return {};
 			});
