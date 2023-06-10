@@ -17,7 +17,6 @@ export default function PostDetail({admin}) {
 	const post_text = useRef();
 
 	useEffect(() => {
-		let isMounted = true;
 		//const source = axios.CancelToken.source();
 		const controller = new AbortController();
 
@@ -36,7 +35,6 @@ export default function PostDetail({admin}) {
 
 		fetchData();
 		return () => {
-			isMounted = false;
 			setPost(() => {
 				return {};
 			});

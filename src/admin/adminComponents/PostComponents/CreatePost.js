@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useRef} from 'react';
 import axios from 'axios';
 import useSlugify from './../../../Hooks/useSlugify.js';
 import {useNavigate} from 'react-router-dom';
@@ -8,14 +8,11 @@ import {
 	Button,
 	TextField,
 	Typography,
-	Box,
 	Grid,
 	Card,
 	CardContent,
 	CardActions,
 } from '@mui/material';
-
-import styles from '../../../pages/admin.module.css';
 
 export default function CreatePost() {
 	const title = useRef();
