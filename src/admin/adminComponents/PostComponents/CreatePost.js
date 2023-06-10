@@ -1,6 +1,6 @@
 import {useRef, useState} from 'react';
 import axios from 'axios';
-import useSlugify from 'client/src/Hooks/useSlugify.js';
+import useSlugify from './../../../Hooks/useSlugify.js';
 import {useNavigate} from 'react-router-dom';
 import SubNavigation from '../../Subnavigation';
 

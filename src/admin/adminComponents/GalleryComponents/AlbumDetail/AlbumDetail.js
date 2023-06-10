@@ -3,7 +3,7 @@ import {useDropzone} from 'react-dropzone';
 import {useEffect, useState, useRef, useCallback} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {useAdmin, useAdminUpdate} from '../../../../context/AdminContext';
-import useSlugify from 'client/src/Hooks/useSlugify.js';
+import useSlugify from '../../../../Hooks/useSlugify.js';
 
 import AddPhotosDropzone from '../AddPhotosDropzone';
 import DeleteAlbumButton from '../AlbumDetail/DeleteAlbumButton.js';
