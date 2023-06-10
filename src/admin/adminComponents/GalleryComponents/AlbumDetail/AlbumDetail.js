@@ -31,6 +31,11 @@ export default function AlbumDetail() {
 	/// custum hooks
 	const {slugify} = useSlugify();
 
+	const url =
+		process.env.NODE_ENV === 'production'
+			? `${process.env.REACT_APP_BACKEND_URL}/api/get/album/`
+			: '/api/get/album/';
+
 	const date = new Date().toISOString().substring(0, 19); // substring for MySql server;
 
 	const datumUpdated = new Date(album?.date_updated);
@@ -119,9 +124,7 @@ export default function AlbumDetail() {
 				// adding delay of 1 second
 				await new Promise((resolve) => setTimeout(resolve, 1000));
 				const response = await axios.get(
-					`/api/get/album/${encodeURIComponent(id)}/${encodeURIComponent(
-						albumSlug
-					)}`
+					`${url}${encodeURIComponent(id)}/${encodeURIComponent(albumSlug)}`
 				);
 
 				const {arrayOfPictures, ...rawAlbum} = response.data[0];

@@ -21,6 +21,11 @@ export default function CreatePost() {
 	const {slugify} = useSlugify();
 	const navigate = useNavigate();
 
+	const url =
+		process.env.NODE_ENV === 'production'
+			? `${process.env.REACT_APP_BACKEND_URL}/api/create`
+			: '/api/create';
+
 	const submitPost = async () => {
 		const datePosted = new Date().toISOString().substring(0, 19);
 
@@ -40,7 +45,7 @@ export default function CreatePost() {
 		try {
 			alert('Příspěvek bude odeslán na server...');
 
-			const response = await axios.post('/api/create', {
+			const response = await axios.post(url, {
 				userPass: userPassValue,
 				title: titleValue,
 				text: text.current.value || '',
