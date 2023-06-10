@@ -28,7 +28,7 @@ export default function AdminNews() {
 	});
 
 	console.log(url);
-	console.table(process.env);
+	console.log(process.env.REACT_APP_BACKEND_URL);
 
 	useEffect(() => {
 		setButtonName(() => {
