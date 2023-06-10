@@ -6,7 +6,7 @@ import AdminPostList from '../adminComponents/PostComponents/AdminPostList';
 import SearchInput from '../adminComponents/PostComponents/SearchInput';
 import SelectInput from '../adminComponents/PostComponents/SelectInput';
 import SelectYearMonth from '../adminComponents/PostComponents/SelectYearMonth';
-import {Loader} from 'client/src/Loader.js';
+import {Loader} from '../../Loader.js';
 import SubNavigation from '../Subnavigation';
 
 import styles from '../../pages/admin.module.css';
@@ -56,6 +56,9 @@ export default function AdminNews() {
 			controller.abort();
 		};
 	}, []);
+	console.log(postList?.length);
+
+	console.log(postList?.length === 0);
 
 	return (
 		<div className={`${styles.item} ${styles.two}`}>
@@ -83,7 +86,7 @@ export default function AdminNews() {
 				orderedListOfPosts={postList}
 			/>
 			<SelectYearMonth orderedListFromToFunc={setPostList} />
-			{postList.length < 0 ? (
+			{postList?.length === 0 ? (
 				<Loader />
 			) : (
 				<AdminPostList listOfPosts={filterredPosts} />
