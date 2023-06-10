@@ -28,6 +28,7 @@ export default function AdminNews() {
 	});
 
 	console.log(url);
+	console.table(process.env);
 
 	useEffect(() => {
 		setButtonName(() => {
@@ -56,9 +57,6 @@ export default function AdminNews() {
 			controller.abort();
 		};
 	}, []);
-	console.log(postList?.length);
-
-	console.log(postList?.length === 0);
 
 	return (
 		<div className={`${styles.item} ${styles.two}`}>
