@@ -27,6 +27,13 @@ export default function AdminPost({content}) {
 		timeStyle: 'short',
 	});
 
+	const url =
+		process.env.NODE_ENV === 'production'
+			? `${process.env.REACT_APP_BACKEND_URL}/api/get`
+			: '/api/get';
+
+	console.log(`${url}/${content.id}/${content.slug}`);
+
 	return (
 		<Card
 			sx={{
