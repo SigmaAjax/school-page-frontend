@@ -73,8 +73,14 @@ export default function AlbumPage() {
 	}
 
 	return (
-		<Stack spacing={4}>
-			<ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
+		<Stack spacing={4} sx={{margin: 2}}>
+			<ImageList
+				sx={{width: 700, height: 450}}
+				cols={3}
+				rowHeight={164}
+				gap={25}
+				variant="masonry"
+			>
 				{albums.map((album) => {
 					return <AlbumCardUser key={album.id} {...album} />;
 				})}
