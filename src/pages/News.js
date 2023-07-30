@@ -50,8 +50,10 @@ export default function News() {
 
 	return (
 		<Grid container marginTop={60}>
-			<Typography variant="h1">Aktuality</Typography>
-			<Grid container spacing={8} margin={1}>
+			<Typography variant="h1" sx={{marginLeft: '64px'}}>
+				Aktuality
+			</Typography>
+			<Grid container spacing={8} margin={1} justifyContent={'center'}>
 				{postList.map((post) => (
 					<Post key={post.id} {...post} />
 				))}
