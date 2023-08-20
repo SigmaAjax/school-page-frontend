@@ -5,6 +5,7 @@ import Header from './Header';
 import {Grid, Box} from '@mui/material';
 
 import imageURL from '../../images/background_image.jpg'; // make sure to provide the correct path to your image file
+import school_img from '../../images/DJI_0214.JPG';
 
 export default function Layout({children}) {
 	return (
@@ -14,7 +15,7 @@ export default function Layout({children}) {
 				position: 'absolute',
 				width: '100%',
 				height: '75%',
-				backgroundImage: `url(${imageURL})`,
+				backgroundImage: `url(${school_img})`,
 				backgroundPosition: 'center',
 				backgroundSize: 'cover',
 				backgroundRepeat: 'no-repeat',

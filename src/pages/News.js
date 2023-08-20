@@ -1,13 +1,23 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import Post from '../components/ui/Post';
-import {Grid, Typography} from '@mui/material';
+import {Grid, Typography, Button, TextField, Box} from '@mui/material';
 import {Loader} from '../Loader';
+import PostList from '../components/ui/Posts/PostList';
 
 export default function News() {
 	const [postList, setPostList] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
+	const [searchPhrase, setSearchPhrase] = useState('');
+	const [tempSearchPhrase, setTempSearchPhrase] = useState(''); // New state variable
+
+	const filteredPosts = postList.filter((post) => {
+		return post.title.toLowerCase().includes(searchPhrase.toLowerCase());
+	});
+
+	const handleSearchButtonClick = () => {
+		setSearchPhrase(tempSearchPhrase); // Update from tempSearchPhrase
+	};
 
 	const fetchPosts = async () => {
 		try {
@@ -20,7 +30,6 @@ export default function News() {
 			if (response.status === 200) {
 				setPostList(response.data);
 			} else {
-				// This will run if the status is not 200, e.g. 404 or 500
 				throw new Error(`Error ${response.status}: ${response.statusText}`);
 			}
 
@@ -41,7 +50,7 @@ export default function News() {
 	}
 
 	if (errorMsg) {
-		return <h1>{errorMsg}</h1>; // You can format this error message as you see fit
+		return <h1>{errorMsg}</h1>;
 	}
 
 	if (postList?.length === 0) {
@@ -49,15 +58,41 @@ export default function News() {
 	}
 
 	return (
-		<Grid container marginTop={60}>
-			<Typography variant="h1" sx={{marginLeft: '64px'}}>
-				Aktuality
-			</Typography>
-			<Grid container spacing={8} margin={1} justifyContent={'center'}>
-				{postList.map((post) => (
-					<Post key={post.id} {...post} />
-				))}
+		<Grid container marginTop={60} marginBottom={20}>
+			<Grid item xs={12} sm={6} md={6} lg={6}>
+				<Typography variant="h1" sx={{marginLeft: '64px'}}>
+					Aktuality
+				</Typography>
 			</Grid>
+			<Grid item xs={12} sm={6} md={6} lg={6}>
+				<Box display="flex" justifyContent="center" alignItems={'flex-end'}>
+					<TextField
+						sx={{
+							marginTop: 10,
+							marginRight: 2,
+						}}
+						label="Vyhledat podle názvu"
+						autoComplete="off"
+						variant="outlined"
+						value={tempSearchPhrase} // Use tempSearchPhrase
+						onChange={(e) => setTempSearchPhrase(e.target.value)} // Update tempSearchPhrase
+						size="small"
+					/>
+					<Button
+						variant="outlined"
+						color="primary"
+						sx={{marginLeft: 2, maxHeight: '56px'}}
+						onClick={handleSearchButtonClick}
+					>
+						Vyhledat
+					</Button>
+				</Box>
+			</Grid>
+			{postList?.length === 0 ? (
+				<Loader />
+			) : (
+				<PostList listOfPosts={filteredPosts} />
+			)}
 		</Grid>
 	);
 }
