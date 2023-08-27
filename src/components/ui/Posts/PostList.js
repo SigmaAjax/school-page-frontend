@@ -27,7 +27,7 @@ export default function PostList({listOfPosts}) {
 				<Grid
 					container
 					justifyContent="center"
-					sx={{marginTop: 2, marginBottom: 2}}
+					sx={{marginTop: 2, marginBottom: 0, marginLeft: 0}}
 				>
 					<Button
 						variant="contained"

@@ -1,5 +1,12 @@
-import {Box, Typography, Button, Grid} from '@mui/material';
-import ArrowForward from '@mui/icons-material/ArrowForward';
+import {
+	Typography,
+	Button,
+	Grid,
+	CardActionArea,
+	Card,
+	CardContent,
+	Box,
+} from '@mui/material';
 import {useState} from 'react';
 
 export default function Post(props) {
@@ -21,98 +28,53 @@ export default function Post(props) {
 	};
 
 	return (
-		<Grid item xs={12} sm={6} md={6} paddingRight={'32px'}>
-			<Box
-				sx={{
-					p: 6,
-					border: 1,
-					borderColor: 'grey.200',
-					borderRadius: 1,
-					boxShadow: 1,
-					backgroundColor: 'grey.200',
-				}}
-			>
-				<Typography
-					variant="h3"
-					component="h2"
-					mb={2}
-					sx={{fontWeight: 'bold'}}
-					marginLeft={10}
-					paddingBottom={10}
-					marginTop={10}
-				>
-					{title}
-				</Typography>
-				<Typography
-					marginLeft={1}
-					paddingBottom={10}
-					variant="h6"
-					mb={5}
-					paragraph={true}
-					sx={{
-						wordWrap: 'break-word',
-						lineHeight: '36px',
-						position: 'relative',
-						maxHeight: readMore ? '100%' : '100px',
-						minHeight: '100px',
-						overflow: 'hidden',
-						transition: '1s',
-						'&:after': {
-							content: description.length > 100 ? '""' : 'none',
-							textAlign: 'right',
-							position: 'absolute',
-							bottom: 0,
-							right: 0,
-							width: '50%',
-							height: '50%',
-							// backgroundImage: readMore
-							// 	? 'none'
-							// 	: 'linear-gradient(to bottom, rgba(118, 118, 118, 0), rgba(118, 118, 118, 1) 100%)',
-							pointerEvents: 'none',
-						},
-					}}
-				>
-					{readMore
-						? description
-						: `${description.substring(0, 100)}${
-								description.length > 100 ? '...' : ''
-						  }`}
-				</Typography>
-				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						marginBottom: 5, // if you want to maintain the same margin as before
-					}}
-				>
-					<Typography variant="body2" component="p" fontWeight="bold">
-						Vytvořeno: {formatDateCzech.format(new Date(date_created))}
-					</Typography>
-					<Typography variant="subtitle1">Autor: {author}</Typography>
-				</Box>
+		<Grid item xs={12} sm={6} md={6} padding={'32px'}>
+			<CardActionArea>
+				<Card sx={{display: 'flex', boxShadow: '0px 5px 15px rgba(0,0,0,0.3)'}}>
+					<CardContent sx={{flex: 1}}>
+						<Typography component="h2" variant="h5">
+							{title}
+						</Typography>
 
-				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'space-between',
-						alignItems: 'center',
-						minHeight: '36px', // Min height matching the expected height of the button
-					}}
-				>
-					<Button
-						style={{
-							visibility: description.length > 150 ? 'visible' : 'hidden',
-						}}
-						endIcon={<ArrowForward />}
-						color="primary"
-						size="small"
-						onClick={handleClick}
-					>
-						{readMore ? 'Méně ...' : 'Více ...'}
-					</Button>
-				</Box>
-			</Box>
+						<Typography
+							variant="subtitle1"
+							paragraph
+							paddingLeft={2}
+							paddingTop={2}
+							minHeight={'72px'}
+						>
+							{readMore
+								? description
+								: `${description.substring(0, 40)}${
+										description.length > 40 ? '...' : ''
+								  }`}
+						</Typography>
+						<Button
+							sx={{
+								visibility: description.length > 40 ? 'visible' : 'hidden',
+								paddingBottom: 1,
+							}}
+							color="primary"
+							size="small"
+							onClick={handleClick}
+						>
+							{readMore ? 'Méně ...' : 'Více ...'}
+						</Button>
+						<Box
+							sx={{
+								display: 'flex',
+								justifyContent: 'space-around',
+								alignItems: 'center',
+							}}
+						>
+							<Typography variant="body2" component="p" fontWeight="bold">
+								Vytvořeno: {formatDateCzech.format(new Date(date_created))}
+							</Typography>
+							<Typography variant="subtitle1"> {author}</Typography>
+						</Box>
+					</CardContent>
+				</Card>
+			</CardActionArea>
 		</Grid>
 	);
 }

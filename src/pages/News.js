@@ -58,30 +58,56 @@ export default function News() {
 	}
 
 	return (
-		<Grid container marginTop={60} marginBottom={20}>
-			<Grid item xs={12} sm={6} md={6} lg={6}>
-				<Typography variant="h1" sx={{marginLeft: '64px'}}>
+		<Grid
+			container
+			sx={{marginBottom: 10, marginTop: 10}}
+			justifyContent="center"
+		>
+			<Grid
+				item
+				xs={12}
+				sm={6}
+				md={6}
+				lg={6}
+				display="flex"
+				justifyContent={'center'}
+				alignItems={'flex-end'}
+			>
+				<Typography
+					variant="h1"
+					style={{textShadow: '2px 2px 4px #000', color: 'white'}}
+				>
 					Aktuality
 				</Typography>
 			</Grid>
 			<Grid item xs={12} sm={6} md={6} lg={6}>
-				<Box display="flex" justifyContent="center" alignItems={'flex-end'}>
+				<Box
+					display={'flex'}
+					flexDirection={'row'}
+					justifyContent="space-evenly"
+					alignItems={'flex-end'}
+					marginBottom={2}
+				>
 					<TextField
 						sx={{
 							marginTop: 10,
-							marginRight: 2,
+							backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white
+							boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.2)', // Soft box shadow
+							borderRadius: '8px',
 						}}
+						placeholder="např. Prázdniny"
 						label="Vyhledat podle názvu"
 						autoComplete="off"
-						variant="outlined"
+						variant="filled"
 						value={tempSearchPhrase} // Use tempSearchPhrase
 						onChange={(e) => setTempSearchPhrase(e.target.value)} // Update tempSearchPhrase
 						size="small"
 					/>
 					<Button
-						variant="outlined"
-						color="primary"
-						sx={{marginLeft: 2, maxHeight: '56px'}}
+						variant="contained"
+						sx={{
+							boxShadow: '0 3px 5px 2px rgba(0, 0, 0, 0.2)',
+						}}
 						onClick={handleSearchButtonClick}
 					>
 						Vyhledat
